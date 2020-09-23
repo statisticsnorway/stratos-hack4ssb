@@ -29,8 +29,8 @@ steps:
           cd ..
           echo "Adding function to zip"
           cd hello_world
-          zip -g lambda_function.zip lambda_function.py
-          zip -g lambda_function.zip sqldatabase.yml
+          zip -g ../lambda_function.zip lambda_function.py
+          zip -g ../lambda_function.zip sqldatabase.yml
           pwd
           ls -l
 
