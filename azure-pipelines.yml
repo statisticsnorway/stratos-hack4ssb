@@ -19,11 +19,8 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
-- script: ls -l
-
-- script: ls -l $(Build.Repository.LocalPath)
-
 - task: ArchiveFiles@2
+  displayName: 'Creating zip file'
   inputs:
     rootFolderOrFile: '$(Build.Repository.LocalPath)/lambda_function.py'
     includeRootFolder: false
@@ -32,6 +29,7 @@ steps:
     replaceExistingArchive: true
 
 - task: LambdaDeployFunction@1
+  displayName: 'Deploying to AWS Lambda'
   #condition: and(succeeded(), eq(variables.isMain, true))
   inputs:
     awsCredentials: 'AWS (Hack4SSB)'
