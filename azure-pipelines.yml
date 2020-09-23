@@ -15,9 +15,12 @@ variables:
 steps:
 - script: ls -l $(Build.Repository.LocalPath)/hello_world
 
+- script: python -m pip install --upgrade pip setuptools wheel
+  displayName: 'Install tools'
+
 - script: |
           echo "Downloading deps and creating zip file"
-          pip3 install -r hello_world/requirements.txt --target ./package pyyaml
+          pip install -r hello_world/requirements.txt --target ./package pyyaml
           echo "Checking package folder"
           cd package
           ls -l
