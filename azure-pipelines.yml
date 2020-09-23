@@ -19,9 +19,9 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
-- script: ls -l lamda_functions.py
+- script: ls -l lambda_functions.py
 
-- script: ls -l $(Build.Repository.LocalPath)/lamda_functions.py
+- script: ls -l $(Build.Repository.LocalPath)/lambda_functions.py
 
 - task: ArchiveFiles@2
   inputs:
