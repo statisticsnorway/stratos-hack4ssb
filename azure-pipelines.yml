@@ -14,14 +14,25 @@ variables:
 
 steps:
 - script: ls -l $(Build.Repository.LocalPath)/hello_world
-- task: ArchiveFiles@2
-  displayName: 'Creating zip file'
+
+- task: LambdaNETCoreDeploy@1
   inputs:
-    rootFolderOrFile: $(Build.Repository.LocalPath)/hello_world
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Pipeline.Workspace)/lambda_function.zip'
-    replaceExistingArchive: true
+    awsCredentials: 'AWS (Hack4SSB)'
+    regionName: 'eu-central-1'
+    command: 'deployFunction'
+    packageOnly: true
+    packageOutputFile: '$(Pipeline.Workspace)/lambda_function.zip'
+    lambdaProjectPath: '$(Pipeline.Workspace)'
+    functionName: 'lambda_function'
+
+#- task: ArchiveFiles@2
+#  displayName: 'Creating zip file'
+#  inputs:
+#    rootFolderOrFile: $(Build.Repository.LocalPath)/hello_world
+#    includeRootFolder: false
+#    archiveType: 'zip'
+#    archiveFile: '$(Pipeline.Workspace)/lambda_function.zip'
+#    replaceExistingArchive: true
 
 - task: LambdaDeployFunction@1
   displayName: 'Deploying to AWS Lambda'
