@@ -25,11 +25,10 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    #rootFolderOrFile: '$(Build.Repository.LocalPath)/lambda_functions.py'
-    rootFolderOrFile: 'lambda_functions.py'
+    rootFolderOrFile: '$(Build.Repository.LocalPath)/lambda_function.py'
     includeRootFolder: false
     archiveType: 'zip'
-    archiveFile: '$(Pipeline.Workspace)/lambda_functions.zip'
+    archiveFile: '$(Pipeline.Workspace)/lambda_function.zip'
     replaceExistingArchive: true
 
 - task: LambdaDeployFunction@1
@@ -40,4 +39,4 @@ steps:
     deploymentMode: 'codeonly'
     functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
     codeLocation: 'localfile'
-    localZipFile: '$(Pipeline.Workspace)/lambda_functions.zip'
+    localZipFile: '$(Pipeline.Workspace)/lambda_function.zip'
