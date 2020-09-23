@@ -5,16 +5,12 @@
 # https://aka.ms/yaml
 
 trigger:
-<<<<<<< HEAD
-- main
-=======
   branches:
     include:
     - '*'
   tags:
     include:
     - '*'
->>>>>>> 13b67e5304c095d39896a6a2f850d712a37de518
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -35,24 +31,12 @@ steps:
     archiveFile: '$(Pipeline.Workspace)/lambda_functions.zip'
     replaceExistingArchive: true
 
-<<<<<<< HEAD
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-- task: LambdaDeployFunction@1
-=======
 - task: LambdaDeployFunction@1
   condition: and(succeeded(), eq(variables.isMain, true))
->>>>>>> 13b67e5304c095d39896a6a2f850d712a37de518
   inputs:
     awsCredentials: 'AWS (Hack4SSB)'
     regionName: 'eu-central-1'
     deploymentMode: 'codeonly'
     functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
     codeLocation: 'localfile'
-<<<<<<< HEAD
-    localZipFile: '.'
-=======
     localZipFile: '$(Pipeline.Workspace)/lambda_functions.zip'
->>>>>>> 13b67e5304c095d39896a6a2f850d712a37de518
