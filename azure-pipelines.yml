@@ -29,15 +29,9 @@ steps:
           cd ..
           echo "Adding function to zip"
           zip -g lambda_function.zip hello_world/lambda_function.py
-
-#- task: ArchiveFiles@2
-#  displayName: 'Creating zip file'
-#  inputs:
-#    rootFolderOrFile: $(Build.Repository.LocalPath)/hello_world
-#    includeRootFolder: false
-#    archiveType: 'zip'
-#    archiveFile: '$(Pipeline.Workspace)/lambda_function.zip'
-#    replaceExistingArchive: true
+          zip -g lambda_function.zip hello_world/sqldatabase.yaml
+          pwd
+          ls -l
 
 - task: LambdaDeployFunction@1
   displayName: 'Deploying to AWS Lambda'
