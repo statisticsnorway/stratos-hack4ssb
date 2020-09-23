@@ -1,19 +1,35 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
+  branches:
+    include:
+    - '*'
+  tags:
+    include:
+    - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+steps:
+- task: ArchiveFiles@2
+  displayName: 'Creating zip file'
+  inputs:
+    rootFolderOrFile: '$(Build.Repository.LocalPath)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Pipeline.Workspace)/lambda_function.zip'
+    replaceExistingArchive: true
+
+- task: LambdaDeployFunction@1
+  displayName: 'Deploying to AWS Lambda'
+  #condition: and(succeeded(), eq(variables.isMain, true))
+  inputs:
+    awsCredentials: 'AWS (Hack4SSB)'
+    regionName: 'eu-central-1'
+    deploymentMode: 'codeonly'
+    functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
+    codeLocation: 'localfile'
+    localZipFile: '$(Pipeline.Workspace)/lambda_function.zip'
+    
