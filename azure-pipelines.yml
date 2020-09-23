@@ -17,7 +17,7 @@ steps:
 
 - script: |
           echo "Downloading deps and creating zip file"
-          pip install -r hello_world/requirements.txt --target ./package pyyaml
+          pip3 install -r hello_world/requirements.txt --target ./package pyyaml
           echo "Checking package folder"
           cd package
           ls -l
