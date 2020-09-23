@@ -9,4 +9,4 @@ spec:
   collation: en_US.UTF8
   instanceRef:
     # Matches instance name from the sql-instance config
-    name: __service_name__-sqlinstance-__namespace__
+    name: __servicename__-sqlinstance-__namespace__
