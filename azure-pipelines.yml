@@ -15,14 +15,13 @@ variables:
 steps:
 - script: ls -l $(Build.Repository.LocalPath)/hello_world
 
-- task: LambdaNETCoreDeploy@1
-  inputs:
-    awsCredentials: 'AWS (Hack4SSB)'
-    regionName: 'eu-central-1'
-    command: 'deployFunction'
-    packageOnly: true
-    packageOutputFile: '$(Pipeline.Workspace)/lambda_function.zip'
-    lambdaProjectPath: '$(Build.Repository.LocalPath)/hello_world/lambda_function.py'
+- script: |
+          echo "Downloading deps and creating zip file"
+          pip install -r requirements.txt --target ./package pyyaml
+          cd package
+          zip -r9 ../lambda_function.zip .
+          cd ..
+          zip -g lambda_function.zip lambda_function.py sqldatabase.yml
 
 #- task: ArchiveFiles@2
 #  displayName: 'Creating zip file'
