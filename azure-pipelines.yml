@@ -22,8 +22,7 @@ steps:
     command: 'deployFunction'
     packageOnly: true
     packageOutputFile: '$(Pipeline.Workspace)/lambda_function.zip'
-    lambdaProjectPath: '$(Build.Repository.LocalPath)'
-    functionName: 'lambda_function'
+    lambdaProjectPath: '$(Build.Repository.LocalPath)/lambda_function.py'
 
 #- task: ArchiveFiles@2
 #  displayName: 'Creating zip file'
