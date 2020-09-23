@@ -1,10 +1,11 @@
 import json
 import yaml
 
-print('Loading function')
+# import requests
+
 
 def lambda_handler(event, context):
-
+  
     with open("sqldatabase.yml", "r") as file:
         try:
             loaded = yaml.safe_load(file)
@@ -15,4 +16,7 @@ def lambda_handler(event, context):
     loaded["metadata"]["namespace"] = "namespace_test"
     loaded["spec"]["instanceRef"]["name"] = loaded["metadata"]["name"] + "-sqlinstance-" + loaded["metadata"]["namespace"]
     
-    return (yaml.dump(loaded, default_flow_style=False))
+    return {
+        "statusCode": 200,
+        "body": yaml.dump(loaded, default_flow_style=False),
+    }
