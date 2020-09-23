@@ -1,0 +1,12 @@
+apiVersion: sql.cnrm.cloud.google.com/v1beta1
+kind: SQLDatabase
+metadata:
+  # Database name
+  name: __servicename__
+  namespace: __namespace__
+spec:
+  charset: UTF8
+  collation: en_US.UTF8
+  instanceRef:
+    # Matches instance name from the sql-instance config
+    name: __service_name__-sqlinstance-__namespace__
