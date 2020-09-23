@@ -32,7 +32,7 @@ steps:
     replaceExistingArchive: true
 
 - task: LambdaDeployFunction@1
-  condition: and(succeeded(), eq(variables.isMain, true))
+  #condition: and(succeeded(), eq(variables.isMain, true))
   inputs:
     awsCredentials: 'AWS (Hack4SSB)'
     regionName: 'eu-central-1'
