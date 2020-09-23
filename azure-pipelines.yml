@@ -29,7 +29,7 @@ steps:
           cd ..
           echo "Adding function to zip"
           cd hello_world
-          chomd 755 lambda_function.py
+          chmod 755 lambda_function.py
           zip -g ../lambda_function.zip lambda_function.py
           zip -g ../lambda_function.zip sqldatabase.yml
           pwd
