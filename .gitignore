@@ -2,3 +2,7 @@
 .vscode
 hello_world/dependencies
 .DS_Store
+tests/unit/__pycache__/*
+hello_world/__pycache__/*
+tests/unit/__pycache__/__init__.cpython-37.pyc
+tests/unit/__pycache__/test_handler.cpython-37-pytest-6.0.2.pyc

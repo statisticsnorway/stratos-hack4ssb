@@ -1,12 +1,13 @@
 import json
 import yaml
+import os
 
 # import requests
 
 
 def lambda_handler(event, context):
-    print (event)
-    with open("sqldatabase.yml", "r") as file:
+    file_path = (os.path.dirname(__file__))+"/sqldatabase.yml"
+    with open(file_path, "r") as file:
         try:
             loaded = yaml.safe_load(file)
             print(loaded)
@@ -16,7 +17,8 @@ def lambda_handler(event, context):
     loaded["metadata"]["namespace"] = event["namespace"]
     loaded["spec"]["instanceRef"]["name"] = loaded["metadata"]["name"] + "-sqlinstance-" + loaded["metadata"]["namespace"]
     
-    return {
-        "statusCode": 200,
-        "body": yaml.dump(loaded, default_flow_style=False),
-    }
+    #return {
+    #    "statusCode": 200,
+    #    "body": yaml.dump(loaded, default_flow_style=False),
+    #}
+    return yaml.dump(loaded, default_flow_style=False)

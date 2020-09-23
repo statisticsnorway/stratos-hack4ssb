@@ -1,8 +1,9 @@
 import json
+import yaml
 
 import pytest
 
-from hello_world import app
+from hello_world import lambda_function
 
 
 @pytest.fixture()
@@ -10,6 +11,8 @@ def apigw_event():
     """ Generates API GW Event"""
 
     return {
+        "servicename":"hackservice",
+        "namespace":"stratos",
         "body": '{ "test": "body"}',
         "resource": "/{proxy+}",
         "requestContext": {
@@ -62,12 +65,16 @@ def apigw_event():
     }
 
 
+
+
 def test_lambda_handler(apigw_event, mocker):
-
-    ret = app.lambda_handler(apigw_event, "")
-    data = json.loads(ret["body"])
-
-    assert ret["statusCode"] == 200
-    assert "message" in ret["body"]
-    assert data["message"] == "hello world"
+    print ("Hei")
+    ret = lambda_function.lambda_handler(apigw_event, "")
+    #assert ret["statusCode"] == 200
+    #data = yaml.safe_load(ret[])
+    assert ret == "apiVersion: sql.cnrm.cloud.google.com/v1beta1\nkind: SQLDatabase\nmetadata:\n  name: hackservice\n  namespace: stratos\nspec:\n  charset: UTF8\n  collation: en_US.UTF8\n  instanceRef:\n    name: hackservice-sqlinstance-stratos\n"
+    #print (ret["body"])
+    #assert ret["statusCode"] == 200
+    #assert "message" in ret["body"]
+    #assert data["message"] == "hello world"
     # assert "location" in data.dict_keys()
