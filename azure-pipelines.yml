@@ -15,8 +15,8 @@ variables:
 steps:
 - script: ls -l $(Build.Repository.LocalPath)/hello_world
 
-- script: python -m pip install --upgrade pip setuptools wheel
-  displayName: 'Install tools'
+#- script: python -m pip install --upgrade pip setuptools wheel
+#  displayName: 'Install tools'
 
 #- script: |
 #          echo "Downloading deps and creating zip file"
@@ -50,5 +50,5 @@ steps:
     deploymentMode: 'codeonly'
     functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
     codeLocation: 'localfile'
-    localZipFile: 'new.zip'
+    localZipFile: 'hello_world/new.zip'
     
