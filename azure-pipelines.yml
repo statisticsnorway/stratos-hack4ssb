@@ -38,3 +38,4 @@ steps:
     functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
     codeLocation: 'localfile'
     localZipFile: '$(Pipeline.Workspace)/lambda_function.zip'
+    
