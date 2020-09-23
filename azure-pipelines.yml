@@ -50,5 +50,5 @@ steps:
     deploymentMode: 'codeonly'
     functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
     codeLocation: 'localfile'
-    localZipFile: 'hello_world/new.zip'
+    localZipFile: 'new.zip'
     
