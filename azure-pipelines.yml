@@ -13,7 +13,7 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
-- script: ls -l $(Build.Repository.LocalPath)
+- script: ls -l $(Build.Repository.LocalPath)/hello_world
 - task: ArchiveFiles@2
   displayName: 'Creating zip file'
   inputs:
