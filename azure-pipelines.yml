@@ -16,7 +16,7 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Creating zip file'
   inputs:
-    rootFolderOrFile: '$(Build.Repository.LocalPath)'
+    rootFolderOrFile: '$(Build.Repository.LocalPath)/hello_world/*'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Pipeline.Workspace)/lambda_function.zip'
