@@ -35,7 +35,7 @@ steps:
           zip -g ../lambda_function.zip lambda_function.py
           zip -g ../lambda_function.zip sqldatabase.yml
           cd ..
-          chmod 755 lambda_function.py
+          chmod 755 lambda_function.zip
           pwd
           ls -l
 
