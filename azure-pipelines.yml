@@ -29,7 +29,7 @@ steps:
           cd ..
           echo "Adding function to zip"
           zip -g lambda_function.zip hello_world/lambda_function.py
-          zip -g lambda_function.zip hello_world/sqldatabase.yaml
+          zip -g lambda_function.zip hello_world/sqldatabase.yml
           pwd
           ls -l
 
@@ -42,5 +42,5 @@ steps:
     deploymentMode: 'codeonly'
     functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
     codeLocation: 'localfile'
-    localZipFile: '$(Pipeline.Workspace)/lambda_function.zip'
+    localZipFile: 'lambda_function.zip'
     
