@@ -28,7 +28,7 @@ steps:
           zip -r9 ../lambda_function.zip .
           cd ..
           echo "Adding function to zip"
-          zip -g lambda_function.zip hello_world
+          zip -g lambda_function.zip hello_world/lambda_function.py
 
 #- task: ArchiveFiles@2
 #  displayName: 'Creating zip file'
