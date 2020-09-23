@@ -19,13 +19,14 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
-- script: ls -l 
+- script: ls -l lamda_functions.py
 
-- script: ls -l $(Build.Repository.LocalPath)
+- script: ls -l $(Build.Repository.LocalPath)/lamda_functions.py
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.Repository.LocalPath)/lambda_functions.py'
+    #rootFolderOrFile: '$(Build.Repository.LocalPath)/lambda_functions.py'
+    rootFolderOrFile: 'lambda_functions.py'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Pipeline.Workspace)/lambda_functions.zip'
