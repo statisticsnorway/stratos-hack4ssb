@@ -1,5 +1,16 @@
 # stratos-hack4ssb
 
+## Notes!
+
+- Build app by using `sam build` or `sam build --use-container`
+- Run app by using `sam local invoke -e events/event.json`
+- Test by running `python3 -m pytest tests/ -vv` or `python -m pytest tests/ -vv` depending on your setup
+- Create zip-package for AWS Lambda by running `./create_package.sh` AFTER `sam build` has been run
+- Make sure that the zip is pushed!
+- Push chagnes. The pipeline will deploy the lambda to AWS
+
+## Generated docs after this heading...
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
 - hello_world - Code for the application's Lambda function.
