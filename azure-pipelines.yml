@@ -10,45 +10,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
 
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.8'
-- script: | 
-          python -m pip install --upgrade pip setuptools wheel
-          pip install pyyaml pytest
-  displayName: 'Install tools'
-#- script: python3 -m pytest tests/ -vv
-#  displayName: 'Running tests'  
-
-#- script: |
-#          echo "Downloading deps and creating zip file"
-#          pip install -r hello_world/requirements.txt --target ./package pyyaml
-#          echo "Checking package folder"
-#          chmod -R 755 *
-#          cd package
-#          chmod -R 755 *
-#          ls -l
-#          echo "Adding deps to zip"
-#          zip -r ../lambda_function.zip .
-#          cd ..
-#          echo "Adding function to zip"
-#          cd hello_world
-#          ls -l
-#          chmod 755 lambda_function.py
-#          ls -l
-#          zip -g ../lambda_function.zip lambda_function.py
-#          zip -g ../lambda_function.zip sqldatabase.yml
-#          cd ..
-#          chmod 755 lambda_function.zip
-#          pwd
-#          ls -l
 
 - task: LambdaDeployFunction@1
   displayName: 'Deploying to AWS Lambda'
-  #condition: and(succeeded(), eq(variables.isMain, true))
+  condition: and(succeeded(), eq(variables.isMain, true))
   inputs:
     awsCredentials: 'AWS (Hack4SSB)'
     regionName: 'eu-central-1'
@@ -56,4 +24,5 @@ steps:
     functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
     codeLocation: 'localfile'
     localZipFile: 'package.zip'
+
     
