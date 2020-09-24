@@ -13,6 +13,9 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.7'
 - script: | 
           python -m pip install --upgrade pip setuptools wheel
           pip install pytest
