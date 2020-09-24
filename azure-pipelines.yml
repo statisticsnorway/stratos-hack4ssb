@@ -18,7 +18,7 @@ steps:
     versionSpec: '3.7'
 - script: | 
           python -m pip install --upgrade pip setuptools wheel
-          pip install pytest
+          pip install pyyaml pytest
   displayName: 'Install tools'
 - script: python -m pytest tests/ -vv
   displayName: 'Running tests'  
