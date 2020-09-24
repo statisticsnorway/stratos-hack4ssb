@@ -6,15 +6,17 @@ import os
 
 
 def lambda_handler(event, context):
+    servicename = event["servicename"]
+    namespace = event["namespace"]
     file_path = (os.path.dirname(__file__))+"/sqldatabase.yml"
     with open(file_path, "r") as file:
         try:
             loaded = yaml.safe_load(file)
         except yaml.YAMLError as exc:
             print(exc)
-    loaded["metadata"]["name"] = event["servicename"]
-    loaded["metadata"]["namespace"] = event["namespace"]
-    loaded["spec"]["instanceRef"]["name"] = loaded["metadata"]["name"] + "-sqlinstance-" + loaded["metadata"]["namespace"]
+    loaded["metadata"]["name"] = servicename
+    loaded["metadata"]["namespace"] = namespace
+    loaded["spec"]["instanceRef"]["name"] = servicename + "-sqlinstance-" + namespace
 
     file_path = (os.path.dirname(__file__))+"/sqlinstance.yml"
     with open(file_path, "r") as file:
@@ -22,8 +24,8 @@ def lambda_handler(event, context):
             loaded2 = yaml.safe_load(file)
         except yaml.YAMLError as exc:
             print(exc)
-    loaded2["metadata"]["name"] = event["servicename"]
-    loaded2["metadata"]["namespace"] = event["namespace"]
+    loaded2["metadata"]["name"] = servicename
+    loaded2["metadata"]["namespace"] = namespace
 
     file_path = (os.path.dirname(__file__))+"/sqluser.yml"
     with open(file_path, "r") as file:
@@ -31,10 +33,10 @@ def lambda_handler(event, context):
             loaded3 = yaml.safe_load(file)
         except yaml.YAMLError as exc:
             print(exc)
-    loaded3["metadata"]["name"] = event["servicename"]
-    loaded3["metadata"]["namespace"] = event["namespace"]
-    loaded3["spec"]["instanceRef"]["name"] = loaded3["metadata"]["name"] + "-sqlinstance-" + loaded3["metadata"]["namespace"]
-    loaded3["spec"]["password"]["valueFrom"]["secretKeyRef"]["name"]= event["servicename"]+"-db-credentials"
+    loaded3["metadata"]["name"] = servicename
+    loaded3["metadata"]["namespace"] = namespace
+    loaded3["spec"]["instanceRef"]["name"] = servicename + "-sqlinstance-" + namespace
+    loaded3["spec"]["password"]["valueFrom"]["secretKeyRef"]["name"]=servicename+"-db-credentials"
 
     
 
