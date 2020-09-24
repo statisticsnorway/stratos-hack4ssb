@@ -20,8 +20,8 @@ steps:
           python -m pip install --upgrade pip setuptools wheel
           pip install pyyaml pytest
   displayName: 'Install tools'
-- script: python3 -m pytest tests/ -vv
-  displayName: 'Running tests'  
+#- script: python3 -m pytest tests/ -vv
+#  displayName: 'Running tests'  
 
 #- script: |
 #          echo "Downloading deps and creating zip file"
