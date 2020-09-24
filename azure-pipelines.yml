@@ -13,10 +13,15 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
-- script: ls -l $(Build.Repository.LocalPath)/hello_world
-
-#- script: python -m pip install --upgrade pip setuptools wheel
-#  displayName: 'Install tools'
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+- script: | 
+          python -m pip install --upgrade pip setuptools wheel
+          pip install pyyaml pytest
+  displayName: 'Install tools'
+#- script: python3 -m pytest tests/ -vv
+#  displayName: 'Running tests'  
 
 #- script: |
 #          echo "Downloading deps and creating zip file"
