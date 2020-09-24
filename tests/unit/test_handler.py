@@ -64,17 +64,7 @@ def apigw_event():
         "path": "/examplepath",
     }
 
-
-
-
 def test_lambda_handler(apigw_event, mocker):
-    print ("Hei")
     ret = lambda_function.lambda_handler(apigw_event, "")
-    #assert ret["statusCode"] == 200
-    #data = yaml.safe_load(ret[])
-    assert ret == "apiVersion: sql.cnrm.cloud.google.com/v1beta1\nkind: SQLDatabase\nmetadata:\n  name: hackservice\n  namespace: stratos\nspec:\n  charset: UTF8\n  collation: en_US.UTF8\n  instanceRef:\n    name: hackservice-sqlinstance-stratos\n"
-    #print (ret["body"])
-    #assert ret["statusCode"] == 200
-    #assert "message" in ret["body"]
-    #assert data["message"] == "hello world"
-    # assert "location" in data.dict_keys()
+    assert ret == "apiVersion: sql.cnrm.cloud.google.com/v1beta1\nkind: SQLDatabase\nmetadata:\n  name: hackservice\n  namespace: stratos\nspec:\n  charset: UTF8\n  collation: en_US.UTF8\n  instanceRef:\n    name: hackservice-sqlinstance-stratos\n---\napiVersion: sql.cnrm.cloud.google.com/v1beta1\nkind: SQLInstance\nmetadata:\n  name: hackservice\n  namespace: stratos\nspec:\n  databaseVersion: POSTGRES_12\n  region: europe-north1\n  settings:\n    availabilityType: ZONAL\n    backupConfiguration:\n      enabled: false\n    ipConfiguration:\n      requireSsl: true\n    tier: db-g1-small\n"
+ 
