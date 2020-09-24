@@ -1,0 +1,7 @@
+{
+  "servicename":"hackservice",
+  "namespace":"stratos",
+  "body": "",
+  "httpMethod": "POST",
+  "isBase64Encoded": false
+}

@@ -1,0 +1,16 @@
+apiVersion: sql.cnrm.cloud.google.com/v1beta1
+kind: SQLInstance
+metadata:
+  name: __servicename__-sqlinstance-forbruk
+  namespace: __namespace__
+spec:
+  databaseVersion: POSTGRES_12
+  region: europe-north1
+  settings:
+    tier: db-g1-small
+    availabilityType: ZONAL
+    backupConfiguration:
+      # NB! Backup disabled
+      enabled: false
+    ipConfiguration:
+      requireSsl: true

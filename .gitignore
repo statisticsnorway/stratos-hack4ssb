@@ -1,0 +1,8 @@
+.aws-sam
+.vscode
+hello_world/dependencies
+.DS_Store
+__pycache__/
+*.py[cod]
+*.__pycache__
+*.pyc
