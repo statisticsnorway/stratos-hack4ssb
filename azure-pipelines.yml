@@ -20,7 +20,7 @@ steps:
           python -m pip install --upgrade pip setuptools wheel
           pip install pyyaml pytest
   displayName: 'Install tools'
-- script: python -m pytest tests/ -vv
+- script: python3 -m pytest tests/ -vv
   displayName: 'Running tests'  
 
 #- script: |
