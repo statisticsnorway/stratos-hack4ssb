@@ -1,0 +1,16 @@
+apiVersion: sql.cnrm.cloud.google.com/v1beta1
+kind: SQLUser
+metadata:
+  # Database user name
+  name: __servicename__
+  namespace: __namespace__
+spec:
+  instanceRef:
+    # Matches instance name defined in 'survey-service-sqlinstance.yaml'
+    name: __servicename__-sqlinstance-__namespace__
+  password:
+    valueFrom:
+      # Refers to sealed secret 'survey-service-db-credentials-sealedsecret.yaml'
+      secretKeyRef:
+        name: "__servicename__-db-credentials"
+        key: "password"
