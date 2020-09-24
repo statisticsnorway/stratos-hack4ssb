@@ -13,10 +13,12 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
-- script: ls -l $(Build.Repository.LocalPath)/hello_world
-
-#- script: python -m pip install --upgrade pip setuptools wheel
-#  displayName: 'Install tools'
+- script: | 
+          python -m pip install --upgrade pip setuptools wheel
+          pip install pytest
+  displayName: 'Install tools'
+- script: python -m pytest tests/ -vv
+  displayName: 'Running tests'  
 
 #- script: |
 #          echo "Downloading deps and creating zip file"
