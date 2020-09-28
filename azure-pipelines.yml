@@ -14,15 +14,15 @@ variables:
 
 steps:
 
-- task: LambdaDeployFunction@1
-  displayName: 'Deploying to AWS Lambda'
-  condition: and(succeeded(), eq(variables.isMain, true))
-  inputs:
-    awsCredentials: 'AWS (Hack4SSB)'
-    regionName: 'eu-central-1'
-    deploymentMode: 'codeonly'
-    functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
-    codeLocation: 'localfile'
-    localZipFile: 'package.zip'
+#- task: LambdaDeployFunction@1
+#  displayName: 'Deploying to AWS Lambda'
+#  condition: and(succeeded(), eq(variables.isMain, true))
+#  inputs:
+#    awsCredentials: 'AWS (Hack4SSB)'
+#    regionName: 'eu-central-1'
+#    deploymentMode: 'codeonly'
+#    functionName: 'arn:aws:lambda:eu-central-1:205984356518:function:helloWorld'
+#    codeLocation: 'localfile'
+#    localZipFile: 'package.zip'
 
     
